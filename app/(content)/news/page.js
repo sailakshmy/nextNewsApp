@@ -1,8 +1,10 @@
 // "use client";
 import NewsList from "@/components/NewsList/news-list";
+import { getAllNews } from "@/lib/news";
 // import { useEffect, useState } from "react";
 
 const News = async () => {
+  /** Client Side data fetching */
   // const [loadingNews, setLoadingNews] = useState(false);
   // const [error, setError] = useState();
   // const [news, setNews] = useState();
@@ -20,19 +22,31 @@ const News = async () => {
   //   }
   //   fetchNews();
   // }, []);
-  const response = await fetch("http://localhost:8080/news");
-  const newsList = await response.json();
-  if (!response.ok) {
-    throw new Error("Failed to fetch news!");
-  }
+
+  /** Server side data fetching */
+  // const response = await fetch("http://localhost:8080/news");
+  // const newsList = await response.json();
+  // if (!response.ok) {
+  //   throw new Error("Failed to fetch news!");
+  // }
+
+  /** Direct Data fetchinbg */
+  const news = getAllNews();
+
   return (
     <>
       <div>
         <h1>News Page</h1>
-        {newsList && <NewsList newsList={newsList} />}
+        {/** Client Side data fetching*/}
         {/* {loadingNews && <p>Loading....</p>}
         {error && <p>{error}</p>}
         {news && <NewsList newsList={news} />} */}
+
+        {/** Server Side data fetching */}
+        {/* {newsList && <NewsList newsList={newsList} />} */}
+
+        {/** Direct Data fetching */}
+        {news && <NewsList newsList={news} />}
       </div>
     </>
   );
