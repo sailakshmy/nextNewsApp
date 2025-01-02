@@ -31,7 +31,7 @@ const News = async () => {
   // }
 
   /** Direct Data fetchinbg */
-  const news = getAllNews();
+  const news = await getAllNews();
 
   return (
     <>
