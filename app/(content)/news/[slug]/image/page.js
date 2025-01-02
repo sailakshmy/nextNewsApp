@@ -1,6 +1,7 @@
-import { DUMMY_NEWS } from "@/dummy-news";
-const ImagePage = ({ params }) => {
-  const newsItem = DUMMY_NEWS?.find((news) => news?.slug === params?.slug);
+import { getNewsItem } from "@/lib/news";
+
+const ImagePage = async ({ params }) => {
+  const newsItem = await getNewsItem(params?.slug);
   if (!newsItem) {
     notFound();
   }
